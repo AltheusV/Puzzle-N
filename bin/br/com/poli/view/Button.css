@@ -1,0 +1,54 @@
+.RETRO{
+	-fx-padding: 8 15 15 15;
+	-fx-background-insets: 0, 0 0 10 0, 0 0 6 0, 0 0 7, 0;
+	-fx-background-color: 
+		linear-gradient(from 0% 70% to 0% 100%, #E0FFFF 0%,#ff1bf8),
+		#ff1bf8,
+		#0000FF;
+		
+	-fx-background-radius: 8;
+	-fx-font-weight: bold;
+	-fx-font-size: 140%;
+	-fx-font-family: "Harlow Solid Italic";
+	-fx-text-fill: #00F5FF;
+	
+	
+	
+}
+
+.RETRO:hover{
+	-fx-background-color: 
+		linear-gradient(from 0% 70% to 0% 100%, #E0FFFF 0%, #ff1bf8),
+		#ff1bf8,
+		#0000FF,
+		radial-gradient(center 50% 50%, radius 100%, #16161D, #16161D);
+}
+
+.RETRO:pressed{
+	-fx-padding: 10 15 13 15;
+	-fx-background-insets: 2, 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+
+.FUTURISTIC{
+	-fx-background-insets: 0, 0 0 5 0, 0 0 3 0, 0 0 7, 0;
+	-fx-background-color: 
+		linear-gradient(from 0% 70% to 0% 100%, #000000 0%,#001e2a),
+		#000000,
+		#bafaff;
+	-fx-background-radius: 8;
+	-fx-font-weight: bold;
+	-fx-font-size: 150%;
+	-fx-font-family: "Magneto";
+	-fx-text-fill: #001e2a;
+	
+	
+}
+
+.FUTURISTIC:hover{
+	-fx-background-color: #001e2a;
+	-fx-text-fill: #bafaff;
+}	
+
+.FUTURISTIC:pressed{
+	-fx-background-insets: 2, 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
