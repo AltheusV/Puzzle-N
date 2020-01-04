@@ -8,11 +8,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 
 
 
-public class Puzzle extends Application {
+public class PuzzleN extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -20,8 +21,9 @@ public class Puzzle extends Application {
 			Tela tela = new Tela();			
 			Repositorio r = new Repositorio();
 			AnchorPane fundo = tela.gerarTela(Layout.gameLayout(r.getLayout()), root);
-			//TODO pegar no arquivo.
 			Scene scene = new Scene(fundo);
+			primaryStage.setTitle("Puzzle-N");
+			primaryStage.getIcons().add(new Image("/br/com/poli/resources/a-void.png"));
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.sizeToScene();

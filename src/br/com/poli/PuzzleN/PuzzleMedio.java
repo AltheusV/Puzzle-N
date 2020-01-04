@@ -4,7 +4,7 @@ public class PuzzleMedio extends Puzzle {
 
 	public PuzzleMedio(Tabuleiro t) {
 		super(t);
-		setDificuldade(Dificuldade.MEDIO);
+		setDificuldade(Dificuldade.NORMAL);
 	}
 	
 	public void resolveTabuleiro() throws TempoExcedido {

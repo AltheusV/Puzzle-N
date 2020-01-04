@@ -59,4 +59,14 @@ public class Arquivo {
 		}
 		return layout;
 	}
+	
+	public void salvarRanking(String ranking){
+		String arq = "Ranking.txt";
+		Write(arq,ranking);
+	}
+	
+	public String lerRanking(){
+		String arq = "Ranking.txt";
+		return Read(arq);
+	}
 }

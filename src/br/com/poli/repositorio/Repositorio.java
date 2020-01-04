@@ -11,4 +11,14 @@ public class Repositorio {
 		Arquivo arq = new Arquivo();
 		return arq.lerLayout();
 	}
+	
+	public void armazenarRanking(String ranking){
+		Arquivo arq = new Arquivo();
+		arq.salvarRanking(ranking);
+	}
+	
+	public String recuperarRanking(){
+		Arquivo arq = new Arquivo();
+		return arq.lerRanking();
+	}
 }

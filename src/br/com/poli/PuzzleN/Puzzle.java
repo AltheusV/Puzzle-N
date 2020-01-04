@@ -1,14 +1,12 @@
 package br.com.poli.PuzzleN;
 import java.util.Calendar;
 
-import br.com.poli.Jogador.CalculaScore;
 import br.com.poli.Jogador.Jogador;
 
 public class Puzzle {
 	private Jogador jogador;
 	private Tabuleiro gridPuzzle;
 	private int quantidadeMovimentos;
-	private CalculaScore score;
 	private boolean venceu;
 	private Calendar tempo;
 	private Dificuldade dificuldade;
@@ -37,12 +35,6 @@ public class Puzzle {
 	public void setQuantidadeMovimentos(int quantidadeMovimentos) {
 		this.quantidadeMovimentos = quantidadeMovimentos;
 	}
-	public CalculaScore getScore() {
-		return score;
-	}
-	public void setScore(CalculaScore score) {
-		this.score = score;
-	}
 	public boolean isVenceu() {
 		return venceu;
 	}
@@ -64,10 +56,8 @@ public class Puzzle {
 	
 	
 	
-	public boolean isFimDeJogo(){
-		
+	public boolean isFimDeJogo(){	
 		return gridPuzzle.isTabuleiroOrdenado();
-		
 	}
 	
 	

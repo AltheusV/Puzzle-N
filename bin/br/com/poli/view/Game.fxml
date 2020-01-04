@@ -2,17 +2,115 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="520.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.poli.view.GameController">
    <children>
-      <TilePane fx:id="grid" layoutX="48.0" layoutY="53.0" prefHeight="400.0" prefWidth="400.0" visible="false" />
-      <Button focusTraversable="false" layoutX="526.0" layoutY="438.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+      <TilePane fx:id="grid" layoutX="48.0" layoutY="23.0" prefHeight="400.0" prefWidth="400.0" visible="false" />
+      <Button fx:id="voltar" focusTraversable="false" layoutX="48.0" layoutY="460.0" mnemonicParsing="false" onAction="#voltar" prefHeight="31.0" prefWidth="110.0" text="Return" visible="false" />
       <TextField fx:id="nome" layoutX="191.0" layoutY="212.0" onKeyPressed="#getNome" prefHeight="31.0" prefWidth="268.0" promptText="Fill your name and press ENTER to start">
          <font>
             <Font size="14.0" />
          </font></TextField>
+      <VBox fx:id="container" layoutX="459.0" layoutY="60.0" prefHeight="342.0" prefWidth="171.0" visible="false">
+         <children>
+            <ImageView fx:id="gif" fitHeight="150.0" fitWidth="171.0" pickOnBounds="true" preserveRatio="true" />
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <TextField alignment="CENTER" editable="false" focusTraversable="false" text="Player">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </TextField>
+                  <TextField fx:id="player" alignment="CENTER" editable="false" focusTraversable="false" />
+                  <TextField alignment="CENTER" editable="false" focusTraversable="false" text="Moves">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </TextField>
+                  <TextField fx:id="moves" alignment="CENTER" editable="false" focusTraversable="false" />
+                  <TextField alignment="CENTER" editable="false" focusTraversable="false" text="Time">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </TextField>
+                  <TextField fx:id="time" alignment="CENTER" editable="false" focusTraversable="false" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <Button fx:id="solver" focusTraversable="false" layoutX="338.0" layoutY="460.0" mnemonicParsing="false" onAction="#solve" prefHeight="31.0" prefWidth="110.0" text="Solve" visible="false" />
+      <VBox fx:id="endContainer" alignment="TOP_CENTER" layoutX="219.0" layoutY="111.0" prefHeight="342.0" prefWidth="212.0">
+         <children>
+            <AnchorPane prefHeight="70.0" prefWidth="212.0" />
+            <Button focusTraversable="false" mnemonicParsing="false" prefHeight="31.0" prefWidth="283.0" text="Well Done!">
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </Button>
+            <AnchorPane prefHeight="100.0" prefWidth="212.0" />
+            <Button focusTraversable="false" mnemonicParsing="false" prefHeight="31.0" prefWidth="278.0" text="New Game">
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </Button>
+            <AnchorPane prefHeight="100.0" prefWidth="212.0" />
+            <Button focusTraversable="false" mnemonicParsing="false" prefHeight="31.0" prefWidth="416.0" text="Ranking">
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </Button>
+            <AnchorPane prefHeight="70.0" prefWidth="212.0" />
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

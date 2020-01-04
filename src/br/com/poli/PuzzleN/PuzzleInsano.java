@@ -8,9 +8,9 @@ public class PuzzleInsano extends Puzzle {
 		super(t);
 		
 		this.tamanho = (k*k)-1 ;
-		Dificuldade d = Dificuldade.INSANO;
+		Dificuldade d = Dificuldade.NSANE;
 		d.setValor(tamanho);
-		setDificuldade(Dificuldade.INSANO);
+		setDificuldade(Dificuldade.NSANE);
 	}
 	
 	public int getTamanho() {

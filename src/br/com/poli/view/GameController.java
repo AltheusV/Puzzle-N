@@ -1,23 +1,50 @@
 package br.com.poli.view;
 
+import br.com.poli.Jogador.CalculaScore;
+import br.com.poli.Jogador.Info;
 import br.com.poli.Jogador.Jogador;
 import br.com.poli.PuzzleN.MovimentoInvalido;
 import br.com.poli.PuzzleN.Puzzle;
+import br.com.poli.estruturas.ListaJogadores;
 import br.com.poli.repositorio.Repositorio;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 public class GameController {
+	
 	@FXML
 	private TilePane grid;
 	@FXML
 	private TextField nome;
+	@FXML
+	private TextField player;
+	@FXML
+	private TextField moves;
+	@FXML
+	private TextField time;
+	@FXML
+	private VBox container;
+	@FXML
+	private VBox endContainer;
+	@FXML
+	private ImageView gif;
+	@FXML
+	private Button voltar;
+	@FXML
+	private Button solver;
 
 	private int size;
 	private Button[] btn;
@@ -29,10 +56,47 @@ public class GameController {
 	private int y;
 
 	private String layout;
+	private Timeline clock;
+	private int count;		// temporizador
 	
 	public void initialize(){
 		Repositorio r = new Repositorio();
 		layout = r.getLayout();
+		
+		if(layout.equals("CLASSIC")){
+			container.setLayoutY(22.0);
+		}
+		else if (layout.equals("FUTURISTIC")){
+			container.setLayoutY(42.0);
+		}
+		else if(layout.equals("RETRO")){
+			container.setLayoutY(22.0);
+			gif.setImage(new Image("/br/com/poli/resources/retroGif.gif"));
+		}
+		
+		container.getStylesheets().add("/br/com/poli/view/Button.css");
+		container.getStyleClass().add(layout);
+		container.setStyle("-fx-background-color: transparent");
+		
+		endContainer.getStylesheets().add("/br/com/poli/view/Button.css");
+		endContainer.getStyleClass().add(layout);
+		endContainer.setStyle("-fx-background-color: transparent");
+		
+		player.getStylesheets().add("/br/com/poli/view/Button.css");
+		player.getStyleClass().add(layout);
+		
+		moves.getStylesheets().add("/br/com/poli/view/Button.css");
+		moves.getStyleClass().add(layout);
+		
+		time.getStylesheets().add("/br/com/poli/view/Button.css");
+		time.getStyleClass().add(layout);
+		
+		voltar.getStylesheets().add("/br/com/poli/view/Button.css");
+		voltar.getStyleClass().add(layout);
+		 
+		solver.getStylesheets().add("/br/com/poli/view/Button.css");
+		solver.getStyleClass().add(layout);
+		
 	}
 
 	public void getNome(KeyEvent tecla){
@@ -40,9 +104,38 @@ public class GameController {
 		if(tecla.getCode()== KeyCode.ENTER && !nome.getText().isEmpty()){
 			Jogador player = new Jogador(nome.getText());
 			puzzle.setJogador(player);
+			this.player.setText(nome.getText());
+			container.setVisible(true);
+			voltar.setVisible(true);
+			solver.setVisible(true);
 			geraGame();
+			
+			count = 0;
+			
+		    clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {        
+		        time.setText(count + "(s)");
+		        count++;
+		    }),
+		         new KeyFrame(Duration.seconds(1))
+		    );
+		    
+		    Timeline moves = new Timeline(new KeyFrame(Duration.ZERO, e -> {        
+		        this.moves.setText(Integer.toString(puzzle.getQuantidadeMovimentos()));
+		    }),
+		         new KeyFrame(Duration.seconds(0.1))
+		    );
+		    
+		    clock.setCycleCount(Animation.INDEFINITE);
+		    clock.play();
+		    moves.setCycleCount(Animation.INDEFINITE);
+		    moves.play();
+		    
+		    
 		}
-
+			
+			
+			
+		
 	}
 	//TODO reorganizar geraGame
 	public void geraGame(){
@@ -155,9 +248,10 @@ public class GameController {
 			zero = grid.getChildren().indexOf(atual);  
 			atual.setText("0");
 			atual.setVisible(false);
+			puzzle.setQuantidadeMovimentos(puzzle.getQuantidadeMovimentos()+1);
 
 			if(puzzle.isFimDeJogo()){
-				//TODO gerar tela de fim de jogo.	
+				finalizarJogo();
 			}
 		}
 	}
@@ -201,11 +295,33 @@ public class GameController {
 		}
 		return false;
 	}
+	
+	private void finalizarJogo(){
+		rank(null , new Info(player.getText(), CalculaScore.pontos(puzzle), count));
+	}
+	
+	private ListaJogadores rank(ListaJogadores lista, Info novo){
+		
+		if(lista == null)
+			return new ListaJogadores(novo, null);
+		else{
+			if(novo.getScore()<lista.getPlayerInfo().getScore())
+				return new ListaJogadores(novo, lista);
+			else{
+				return new ListaJogadores(lista.getPlayerInfo(), rank(lista.getNextPlayer(), novo));
+			}
+		}
+	}
 
 
 	public void voltar(ActionEvent event){
 		Tela t = new Tela();
 		t.mudarTela(event, Layout.gameLayout(layout), "/br/com/poli/view/Menu.fxml");
 
+	}
+	
+	public void solve(ActionEvent event){
+		grid.setVisible(false);
+		clock.stop();
 	}
 }

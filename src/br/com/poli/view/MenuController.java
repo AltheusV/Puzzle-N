@@ -60,4 +60,10 @@ public class MenuController {
 		PuzzleDificil puzzle = new PuzzleDificil(new Tabuleiro());
 		tela.mudarTela(event,layoutAtual, "/br/com/poli/view/Game.fxml", puzzle);
 	}
+	
+	public void rank(ActionEvent event){
+		Tela t = new Tela();
+		t.mudarTela(event, Layout.gameLayout(layoutAtual.name()), "/br/com/poli/view/Ranking.fxml");
+
+	}
 }

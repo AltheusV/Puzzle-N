@@ -17,7 +17,8 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Stage;
 
 public class Tela {
-
+	
+	//metodo que cria a tela, a partir do layout predefinido.
 	public AnchorPane gerarTela(Layout layout, Parent root){
 		AnchorPane tela = (AnchorPane) root;
 
@@ -30,7 +31,7 @@ public class Tela {
 		return tela;
 	}
 
-
+	// quando o usuario selecionar uma dificuldade
 	public void mudarTela(ActionEvent event,Layout layout, String caminho, Puzzle puzzle){
 		try{
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(caminho));
@@ -60,20 +61,4 @@ public class Tela {
 		}
 
 	}
-
-	//	public void mostrarTela(ActionEvent event, String caminho, String sala, String bloco){
-	//		try {
-	//			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(caminho));	// funciona parecido a anterior,
-	//			Parent root = (Parent) fxmlLoader.load();									// entretanto, ela da um set em duas informacoes 
-	//			AlteracaoController controller = fxmlLoader.<AlteracaoController>getController();	// no proximo controller, que serao utilizadas
-	//			controller.setSala(sala);															// * classe AlteracaoController
-	//			controller.setBloco(bloco);
-	//			Scene scene = new Scene(root);
-	//			Node node = (Node)event.getSource();
-	//			Stage stage = (Stage)node.getScene().getWindow();
-	//			stage.setScene(scene);
-	//		} catch (IOException e) {
-	//			System.out.println(e.getMessage());
-	//		}
-	//	}
 }

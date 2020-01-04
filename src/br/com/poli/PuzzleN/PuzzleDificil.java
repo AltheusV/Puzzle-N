@@ -4,7 +4,7 @@ public class PuzzleDificil extends Puzzle {
 
 	public PuzzleDificil(Tabuleiro t) {
 		super(t);
-		setDificuldade(Dificuldade.DIFICIL);
+		setDificuldade(Dificuldade.HARD);
 	}
 	
 	public void resolveTabuleiro() throws TempoExcedido {
